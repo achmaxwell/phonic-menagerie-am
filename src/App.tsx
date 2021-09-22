@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Login from './components/Auth/Login';
+import Collection from './components/Collection/Collection'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+interface sessionTokenState {
+ sessionToken: string | null
 }
+
+class App extends React.Component <{},sessionTokenState> {
+    state = {
+      sessionToken: '',
+    }
+  
+
+  componentDidMount = () => {
+    if (localStorage.getItem('token')) {
+      this.setState({sessionToken: localStorage.getItem('token')} );
+    }
+
+  }
+
+  updateToken = (newToken: string) => {
+    localStorage.setItem('token', newToken);
+    this.setState({sessionToken: (newToken)});
+  }
+
+  clearToken = () => {
+    localStorage.clear();
+    this.setState({sessionToken: ('')});
+  }
+
+  protectedViews = () => {
+
+    return (this.state.sessionToken === localStorage.getItem('token') ? <Collection token={this.state.sessionToken} clickLogout={this.clearToken} />
+      : <Login updateToken={this.updateToken} />)
+
+  }
+  render() {
+  return (
+    <div>
+      {this.protectedViews()}
+    </div>
+
+  )};
+  }
 
 export default App;
