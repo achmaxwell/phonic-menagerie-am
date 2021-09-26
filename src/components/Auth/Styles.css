@@ -1,0 +1,23 @@
+.bgDiv {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('./assets/umberto-cofini-lEOogB2xh1M-unsplash.jpg');
+    overflow: scroll;
+  }
+
+  .logoImgLogin {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+
+  .logBtn {
+      background-color: #000;
+      color: white;
+  }
+

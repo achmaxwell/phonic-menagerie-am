@@ -1,59 +1,61 @@
 import { Component } from "react";
 import { Row, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
-import CollectionEdit from './CollectionEdit';
-import CollectionTable from './CollectionTable';
-import CollectionAdd from './CollectionAdd';
+import WishlistEdit from './WishlistEdit';
+import WishlistTable from './WishlistTable';
+import WishlistAdd from './WishlistAdd';
 
-interface collectionProps {
+interface wishlistProps {
     token: string
     clickLogout(): void
   } 
 
-interface collectionState {
-    collection: any
+interface wishlistState {
+    wishlist: any
     updateActive: boolean,
-    collectionToUpdate: { 
+    wishlistToUpdate: { 
         artist: string,
         album: string,
         format: string,
-        cat: string
+        cat: string,
+        price: string
 },
   } 
 
-class Collection extends Component <collectionProps, collectionState> {
-    constructor(props: collectionProps) {
+class Wishlist extends Component <wishlistProps, wishlistState> {
+    constructor(props: wishlistProps) {
     super(props)
     this.state = {
-        collection: [],
+        wishlist: [],
         updateActive: false,
-        collectionToUpdate: {
+        wishlistToUpdate: {
                 artist: '',
                 album: '',
                 format: '',
-                cat: ''
+                cat: '',
+                price: ''
         },
     }
 }
 
-    fetchCollection = () => {
-        fetch('http://localhost:3000/collection/myItems', {
-            // fetch(`${APIURL}/collection/myItems`, {
+    fetchWishlist = () => {
+        fetch('http://localhost:3000/wishList/myWishItems', {
+            // fetch(`${APIURL}/wishList/myItems`, {
             method: 'GET',
             headers: new Headers({
                 'Content-type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
             })
         }).then((res) => res.json())
-            .then((collectionData) => {
-                console.log(collectionData)
-                this.setState({collection:(collectionData)})
+            .then((wishlistData) => {
+                console.log(wishlistData)
+                this.setState({wishlist:(wishlistData)})
             })
     }
 
-    editUpdateCollection = (collection: any) => {
-        this.setState({collectionToUpdate:(collection)});
-        console.log("itemToUpdate " + this.state.collection);
+    editUpdateWishlist = (wishlist: any) => {
+        this.setState({wishlistToUpdate:(wishlist)});
+        console.log("itemToUpdate " + this.state.wishlist);
     }
 
     updateOn = () => {
@@ -65,7 +67,7 @@ class Collection extends Component <collectionProps, collectionState> {
     }
 
     componentDidMount = () => {
-        this.fetchCollection();
+        this.fetchWishlist();
     }
 
     render() {
@@ -89,10 +91,10 @@ class Collection extends Component <collectionProps, collectionState> {
                             </Modal> */}
                         </Row>
                     </div>
-                    <CollectionTable collection={this.state.collection} editUpdateCollection={this.editUpdateCollection}  updateOn={this.updateOn} fetchCollection={this.fetchCollection} token={this.props.token} />
+                    <WishlistTable wishlist={this.state.wishlist} editUpdateWishlist={this.editUpdateWishlist}  updateOn={this.updateOn} fetchWishlist={this.fetchWishlist} token={this.props.token} />
 
                     {this.state.updateActive ?
-                        <CollectionEdit collectionUpdate={this.state.collectionToUpdate} updateOff={this.updateOff} token={this.props.token} fetchCollection={this.fetchCollection} /> : <> </>}
+                        <WishlistEdit wishlistUpdate={this.state.wishlistToUpdate} updateOff={this.updateOff} token={this.props.token} fetchWishlist={this.fetchWishlist} /> : <> </>}
 
 </div>
 </div>
@@ -102,4 +104,4 @@ class Collection extends Component <collectionProps, collectionState> {
 }
 
 
-export default Collection;
+export default Wishlist;
