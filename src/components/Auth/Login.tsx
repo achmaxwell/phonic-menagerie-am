@@ -4,7 +4,7 @@ import logo from "./assets/pm-logo.png"
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material';
+import { Button } from '@mui/material';
 import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 
 import NavAuth from '../Common/NavAuth'
@@ -24,6 +24,8 @@ interface LoginState {
     }
     handleOpen: true,
     handleClose: false,
+    token: string,
+    modal: boolean
 }
 
 class Login extends Component <LoginProps, LoginState> {
@@ -39,10 +41,15 @@ class Login extends Component <LoginProps, LoginState> {
                 password: ''
             },
             handleOpen: true,
-            handleClose: false
+            handleClose: false,
+            token: '',
+            modal: false
 
         }
     }
+
+
+    toggle = () => this.setState({modal: !this.state.modal});
 
     // handleChange = async (e: any) => this.setState({ isAdmin: e.target.checked })
 
@@ -95,7 +102,7 @@ class Login extends Component <LoginProps, LoginState> {
                 <b>Welcome to</b>
                 <img src={logo} alt="Phonic Menagerie" className="logoImgLogin"/>
                 <p>Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
-            <FormControl onSubmit={this.handleSubmit}>
+            <Form onSubmit={this.handleSubmit}>
             <TextField
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: (e.target.value)})}}
                 id="standard-password-input"
@@ -116,23 +123,11 @@ class Login extends Component <LoginProps, LoginState> {
                 required
             />
             <br/>
-            {/* <FormLabel component="legend">Are you an Administrator?</FormLabel>
-            <FormGroup check>
-            <Label check>
-                <Input type="checkbox" id="checkbox2" checked={this.state.isAdmin} onChange={this.handleChange}/>{' '}
-                Are you an admin?
-            </Label>
-            </FormGroup> */}
             <div>
-            {/* <Button 
-            type="submit"
-            sx={{
-                color: 'white',
-                background: '#a1936d',
-            }}>Register</Button> */}
+            <Button>Register</Button>
             <Button type="submit" className="logBtn">Login</Button>
             </div>
-            </FormControl>
+            </Form>
             </Box>
             
         </div>

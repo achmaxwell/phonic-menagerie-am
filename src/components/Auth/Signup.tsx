@@ -5,7 +5,6 @@ import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 
 interface SignupProps {
-    token?: string,
     updateToken(token: string): void
 }
 
@@ -16,8 +15,8 @@ interface SignupState {
         email: string,
         password: string
     }
-    updateToken: string
     isAdmin: boolean
+    token: string
 }
 
 class Signup extends Component <SignupProps, SignupState> {
@@ -30,22 +29,24 @@ class Signup extends Component <SignupProps, SignupState> {
                 email: '',
                 password: '',
             },
-            updateToken: '',
+            token: '',
             isAdmin: false
-        }
-    }
+        }  ; console.log(props)
+    } 
+   
 
-    handleChange = async (e: any) => this.setState({ isAdmin: e.target.checked })
+    handleChange = async () => this.setState({ isAdmin: true })
 
     handleSubmit = async () => {
         const apiURL = `http://localhost:3000/user/create`
+        console.log(apiURL)
         const reqBody = {
             user: {
             email: this.state.email,
             password: this.state.password,
             isAdmin: this.state.isAdmin
-            }
-        }
+            } 
+        } ; console.log(reqBody)
         try {
         const res = await fetch(apiURL, {
         // fetch(`${APIURL}/user/create`, {
@@ -67,16 +68,14 @@ class Signup extends Component <SignupProps, SignupState> {
     return (
         <div>
 
-        <FormControl onSubmit={(e) => {
+        <Form onSubmit={(e) => {
             e.preventDefault()
             this.handleSubmit()}}>
             <TextField
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: e.target.value})}}
                 id="standard-password-input"
                 label="Email"
-                type="username"
-                autoComplete="current-email"
-                variant="standard"
+                type="email"
                 required
             />
             <br/>
@@ -85,8 +84,6 @@ class Signup extends Component <SignupProps, SignupState> {
                 id="standard-password-input"
                 label="Password"
                 type="password"
-                autoComplete="current-password"
-                variant="standard"
                 required
             />
             <br/>
@@ -104,9 +101,8 @@ class Signup extends Component <SignupProps, SignupState> {
                 color: 'white',
                 background: '#a1936d',
             }}>Register</Button>
-            {/* <Button type="submit" className="logBtn">Login</Button> */}
             </div>
-            </FormControl>
+            </Form>
 
         </div>
     );

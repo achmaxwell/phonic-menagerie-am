@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-// import Login from './components/Auth/Login';
-import Signup from './components/Auth/Signup';
+import Login from './components/Auth/Login';
+// import Signup from './components/Auth/Signup';
 import Collection from './components/Collection/Collection'
 
 interface sessionTokenState {
@@ -23,7 +23,7 @@ class App extends React.Component <{},sessionTokenState> {
 
   updateToken = (newToken: string) => {
     localStorage.setItem('token', newToken);
-    this.setState({sessionToken: (newToken)});
+    this.setState({sessionToken: newToken});
   }
 
   clearToken = () => {
@@ -34,7 +34,7 @@ class App extends React.Component <{},sessionTokenState> {
   protectedViews = () => {
 
     return (this.state.sessionToken === localStorage.getItem('token') ? <Collection token={this.state.sessionToken} clickLogout={this.clearToken} />
-      : <Signup updateToken={this.updateToken} />)
+      : <Login updateToken={this.updateToken} clickLogout={this.clearToken}/>)
 
       // clickLogout={this.clearToken}
 

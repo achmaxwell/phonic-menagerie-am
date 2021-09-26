@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import './Styles.css';
+import logo from "../Auth/assets/pm-logo.png"
 import {
     Navbar,
     NavbarBrand,
@@ -30,16 +32,8 @@ render() {
   return (
     <div>
       <Navbar color="light" light expand="md">
-        <NavbarBrand href="/">Phonic Menagerie</NavbarBrand>
-          <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="../Auth/Login">Login</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="../Auth/Signup">Register</NavLink>
-            </NavItem>
-          </Nav>
-          <Button onClick={this.props.clickLogout}>Logout</Button>
+        <NavbarBrand href="/"><img src={logo} alt="Phonic Menagerie" className="logoImgNav"/></NavbarBrand>
+          {/* <Button onClick={this.props.clickLogout}>Logout</Button> */}
       </Navbar>
     </div>
   );

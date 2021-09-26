@@ -31,7 +31,7 @@ class WishlistEdit extends Component <wishlistEditProps,wishlistEditState> {
 
     wishlistUpdate = (event: any) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/wishList/update/${this.props.wishlistUpdate.id}`, {
+        fetch(`http://localhost:3000/wishlist/update/${this.props.wishlistUpdate.id}`, {
             method: 'PUT',
             body: JSON.stringify({wishlist: {artist: '', album: '', format: '', cat: '', price: ''}}),
             headers: new Headers({

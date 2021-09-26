@@ -28,7 +28,7 @@ class WishlistAdd extends Component <AddWishlistProps,AddWishlistState> {
 
     handleSubmit = (e: any) => {
         e.preventDefault();
-        fetch('http://localhost:3000/wishList/add/', {
+        fetch('http://localhost:3000/wishlist/add/', {
             method: 'POST',
             body: JSON.stringify({ wishlist: {artist: '', album: '', format: '', cat: '', price: ''} }),
             headers: new Headers({

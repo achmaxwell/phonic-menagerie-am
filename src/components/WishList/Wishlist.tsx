@@ -39,7 +39,7 @@ class Wishlist extends Component <wishlistProps, wishlistState> {
 }
 
     fetchWishlist = () => {
-        fetch('http://localhost:3000/wishList/myWishItems', {
+        fetch('http://localhost:3000/wishlist/myWishItems', {
             // fetch(`${APIURL}/wishList/myItems`, {
             method: 'GET',
             headers: new Headers({
