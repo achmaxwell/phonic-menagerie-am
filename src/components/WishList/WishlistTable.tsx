@@ -1,24 +1,39 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Row, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import WishlistEdit from './WishlistEdit'
+import './Styles.css';
 
 interface WishlistTableProps {
-    token?: string
-    fetchWishlist?: () => void
-    editUpdateWishlist?: any
+    token: string
+    fetchWishlist: () => void
+    editUpdateWishlist(wishlist: any): void
     updateOn: () => void,
+    updateOff: () => void,
     wishlist: any
-}
-
-interface WishlistTableState {
-    id: number,
-    wishlist: {
+    wishlistToUpdate: {
         artist: string,
         album: string,
         format: string,
         cat: string,
-        price: string
+        price: string,
+        id: number
     }
-    
+}
+
+
+interface WishlistTableState {
+    id: number,
+    wishlist: Wishlist[],
+    modalEdit: boolean
+}
+
+type Wishlist = {
+    artist: string,
+    album: string,
+    format: string,
+    cat: string,
+    price: string,
+    id: number
 }
 
 class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
@@ -26,18 +41,16 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
         super(props)
         this.state = {
             id: 0,
-            wishlist: {
-                artist: '',
-                album: '',
-                format: '',
-                cat:'',
-                price: ''
-            }
+            wishlist: [],
+            modalEdit: false
         }
     }
 
-    deleteWishlist = () => {
-        fetch(`http://localhost:3000/wishList/delete/${this.state.id}`, {
+    deleteWishlist = async(wishlist: any) => {
+        const confirm = prompt('Are you sure you want to delete this record?', 'Yes')
+        if (confirm) {
+            try {
+                const res = await fetch(`http://localhost:3000/wishlist/delete/${wishlist.id}`, {
         // fetch(`${APIURL}/notes/delete/${note.id}`, {
             method: 'DELETE',
             headers: new Headers({
@@ -45,29 +58,35 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
                 'Authorization': `Bearer ${this.props.token}`
             })
         })
-            .then(() => this.props.fetchWishlist)
+        console.log(res)
+        this.props.fetchWishlist()
+            } catch(e){console.log(e)}
+            
+        }
+        
     }
 
 
-    noteMapper = () => {
-        return this.props.wishlist.map((wishlist: {artist: '', album: '', format: '', cat: '', price: ''}, index: any) => {
+    wishlistMapper = (): JSX.Element[] => {
+        return this.props.wishlist.map((wishlist: {artist: Wishlist, album: Wishlist, format: Wishlist, cat: Wishlist, price: Wishlist}, index: number) => {
             console.log(this.props.wishlist)
             return (
-                <div>
+                <tbody>
                     <tr key={index}>
-                    <th scope="row">{this.state.wishlist.artist}</th>
-                    <td>{this.state.wishlist.album}</td>
-                    <td>{this.state.wishlist.format}</td>
-                    <td>{this.state.wishlist.cat}</td>
-                    <td>{this.state.wishlist.price}</td>
+                    <td>{wishlist.artist}</td>
+                    <td>{wishlist.album}</td>
+                    <td>{wishlist.format}</td>
+                    <td>{wishlist.cat}</td>
+                    <td>{wishlist.price}</td>
                     <td>
-                        <Button onClick={() => { this.props.editUpdateWishlist(wishlist); this.props.updateOn() }}>edit</Button>
-                        <br />
-                        <Button onClick={() => { if (window.confirm('Are you sure you want to delete this note?')) this.deleteWishlist() }}>delete</Button>
+                        <div>
+                        <Button className="tableBtn" onClick={() => { this.props.editUpdateWishlist(wishlist); this.props.updateOn() }}>edit</Button>
+                        <Button className="tableBtn" onClick={() => { this.deleteWishlist(wishlist) }}>delete</Button>
+                        </div>
                         
                     </td>
                 </tr>
-                </div>
+                </tbody>
             )
         }
         )
@@ -78,7 +97,7 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
         
             <div>
                 <>
-            <div className="notesTableDiv">
+            <div className="tableDiv overflow-x:auto">
                 <br />
                 <Table borderless>
                     <thead>
@@ -87,12 +106,13 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
                             <th>Album</th>
                             <th>Format</th>
                             <th>Cat#</th>
+                            <th>Price</th>
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        {this.noteMapper()}
-                    </tbody>
+                    
+                        {this.wishlistMapper()}
+                    
                 </Table>
             </div>
         </>

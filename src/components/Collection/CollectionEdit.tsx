@@ -5,7 +5,13 @@ interface collectionEditProps {
     token: string
     fetchCollection: () => void
     updateOff(): void
-    collectionUpdate: any
+    collectionToUpdate: {
+        artist: string,
+        album: string,
+        format: string,
+        cat: string,
+        id: number
+    }
 } 
 
 interface collectionEditState {
@@ -19,18 +25,18 @@ class CollectionEdit extends Component <collectionEditProps,collectionEditState>
     constructor(props: collectionEditProps){
         super(props)
         this.state = {
-            artist: '',
-            album: '',
-            format: '',
-            cat: '',
+            artist: this.props.collectionToUpdate.artist,
+            album: this.props.collectionToUpdate.album,
+            format: this.props.collectionToUpdate.format,
+            cat: this.props.collectionToUpdate.cat,
         }
     }
 
-    collectionUpdate = (event: any) => {
+    collectionUpdate = async (event: any) => {
         event.preventDefault();
-        fetch(`http://localhost:3000/collection/update/${this.props.collectionUpdate.id}`, {
+        fetch(`http://localhost:3000/collection/update/${this.props.collectionToUpdate.id}`, {
             method: 'PUT',
-            body: JSON.stringify({collection: {artist: '', album: '', format: '', cat: ''}}),
+            body: JSON.stringify({ collection: {artist: this.state.artist, album: this.state.album, format: this.state.format, cat: this.state.cat}}),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
@@ -46,12 +52,22 @@ class CollectionEdit extends Component <collectionEditProps,collectionEditState>
     return(
         <div>
             <Form onSubmit={this.collectionUpdate}>
-                <FormGroup>
-                    <Label htmlFor="collection" className="noteHeaderText">edit your records</Label>
-                    <Input name="yourCollection" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="edit artist name" className="formInputName"/>
+            <FormGroup>
+                    <Input name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist">
+                </Input>
                 </FormGroup>
                 <FormGroup>
-                    
+                    <Input name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album">
+                    </Input>
+                </FormGroup>
+                <FormGroup>
+                    <Input name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format">
+                    </Input>
+                </FormGroup>
+                <FormGroup>
+                    <Input name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat">
+                    {this.props.collectionToUpdate.cat}
+                    </Input>
                 </FormGroup>
                 <br/>
                 <Button type="submit" className="editBtn">update</Button>

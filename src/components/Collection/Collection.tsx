@@ -1,13 +1,13 @@
 import { Component } from "react";
 import { Row, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-
 import CollectionEdit from './CollectionEdit';
 import CollectionTable from './CollectionTable';
 import CollectionAdd from './CollectionAdd';
+import './Styles.css';
 
 interface collectionProps {
     token: string
-    clickLogout(): void
+    clickLogout: () => void
   } 
 
 interface collectionState {
@@ -18,7 +18,9 @@ interface collectionState {
         album: string,
         format: string,
         cat: string
+        id: number
 },
+    modal: boolean,
   } 
 
 class Collection extends Component <collectionProps, collectionState> {
@@ -31,10 +33,15 @@ class Collection extends Component <collectionProps, collectionState> {
                 artist: '',
                 album: '',
                 format: '',
-                cat: ''
+                cat: '',
+                id: 0
         },
+        modal: false,
     }
 }
+
+    toggle = () => this.setState({modal: !this.state.modal});
+
 
     fetchCollection = () => {
         fetch('http://localhost:3000/collection/myItems', {
@@ -52,7 +59,7 @@ class Collection extends Component <collectionProps, collectionState> {
     }
 
     editUpdateCollection = (collection: any) => {
-        this.setState({collectionToUpdate:(collection)});
+        this.setState({collectionToUpdate: {artist: collection.artist, album: collection.album, format: collection.format, cat: collection.cat, id: collection.id}});
         console.log("itemToUpdate " + this.state.collection);
     }
 
@@ -70,29 +77,30 @@ class Collection extends Component <collectionProps, collectionState> {
 
     render() {
     return (
-        <div>
-            <div className="bgDiv">
-                <div className="notesViewDiv">
-                    <div className="noteDivBtn">
+        <div >
+            <div className="collectionDiv">
+                <div>
+                    <div>
                         <Row>
                             <h3>welcome!</h3>
-                            <p>keep track of all your gardening and plant progress by adding a note! If you find additional information edit your note, and if you no longer need the information (way to go gardening master!) simply delete it.</p>
-                            <Button id="logoutBtn" size="sm" onClick={this.props.clickLogout} className="logoutBtn">logout</Button>
-                            {/* <Button onClick={this.state.toggle} className="addNoteBtn">add note</Button> */}
-                            {/* <Modal isOpen={modal} toggle={toggle} className={className}>
+                            <p>Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
+                            <Button className="addBtn" onClick={this.toggle}>add record</Button>
+                            <Modal isOpen={this.state.modal} toggle={this.toggle}>
                                 <ModalHeader className="modalHeader">
-                                    <Button onClick={toggle} className="modalCloseBtn">X</Button>
+                                    <Button onClick={this.toggle} className="modalCloseBtn">X</Button>
                                 </ModalHeader>
                                 <ModalBody>
-                                    <CollectionAdd fetchCollection={this.fetchCollection} token={this.props.token} toggle={toggle} />
+                                    <CollectionAdd fetchCollection={this.fetchCollection} token={this.props.token} toggle={this.toggle}/>
                                 </ModalBody>
-                            </Modal> */}
+                            </Modal>
                         </Row>
                     </div>
-                    <CollectionTable collection={this.state.collection} editUpdateCollection={this.editUpdateCollection}  updateOn={this.updateOn} fetchCollection={this.fetchCollection} token={this.props.token} />
-
                     {this.state.updateActive ?
-                        <CollectionEdit collectionUpdate={this.state.collectionToUpdate} updateOff={this.updateOff} token={this.props.token} fetchCollection={this.fetchCollection} /> : <> </>}
+                            <CollectionEdit collectionToUpdate={this.state.collectionToUpdate} updateOff={this.updateOff} token={this.props.token} fetchCollection={this.fetchCollection} /> : <> </>}
+                    <CollectionTable collection={this.state.collection} collectionToUpdate={this.state.collectionToUpdate} editUpdateCollection={this.editUpdateCollection}  updateOff={this.updateOff} updateOn={this.updateOn} fetchCollection={this.fetchCollection} token={this.props.token} />
+
+                    {/* {this.state.updateActive ?
+                            <CollectionEdit collectionToUpdate={this.state.collectionToUpdate} updateOff={this.updateOff} token={this.props.token} fetchCollection={this.fetchCollection} /> : <> </>} */}
 
 </div>
 </div>

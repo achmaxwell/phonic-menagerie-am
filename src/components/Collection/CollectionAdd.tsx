@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
 
 interface AddCollectionProps {
-    token?: string,
+    token: string,
     fetchCollection(collectionData:[]): void
+    toggle(): void
 }
 
 interface AddCollectionState {
@@ -28,7 +29,7 @@ class CollectionAdd extends Component <AddCollectionProps,AddCollectionState> {
         e.preventDefault();
         fetch('http://localhost:3000/collection/add/', {
             method: 'POST',
-            body: JSON.stringify({ collection: {artist: '', album: '', format: '', cat: ''} }),
+            body: JSON.stringify({ collection: {artist: this.state.artist, album: this.state.album, format: this.state.format, cat: this.state.cat} }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
@@ -76,12 +77,13 @@ class CollectionAdd extends Component <AddCollectionProps,AddCollectionState> {
                     <Input name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="album" />
+                    <Input name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="album" />
+                    <Input name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat#" />
                 </FormGroup>
                 <br />
+                <Button onClick={this.props.toggle} className="modalSignupBtn" type="submit">save</Button>
             </Form>
         </>
     )

@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
-import { Table, Button } from 'reactstrap';
+import { Table, Button, Row, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import CollectionEdit from './CollectionEdit'
+import './Styles.css';
 
 interface CollectionTableProps {
-    token?: string
-    fetchCollection?: () => void
-    editUpdateCollection?: any
+    token: string
+    fetchCollection: () => void
+    editUpdateCollection(collection: any): void
     updateOn: () => void,
+    updateOff: () => void,
     collection: any
+    collectionToUpdate: {
+        artist: string,
+        album: string,
+        format: string,
+        cat: string,
+        id: number
+    }
 }
 
 
 interface CollectionTableState {
     id: number,
-    collection: {
-        artist: string,
-        album: string,
-        format: string,
-        cat: string
-    }
-    
+    collection: Collection[],
+    modalEdit: boolean
+}
+
+type Collection = {
+    artist: string,
+    album: string,
+    format: string,
+    cat: string,
+    id: number
 }
 
 class CollectionTable extends Component <CollectionTableProps,CollectionTableState> {
@@ -26,17 +39,16 @@ class CollectionTable extends Component <CollectionTableProps,CollectionTableSta
         super(props)
         this.state = {
             id: 0,
-            collection: {
-                artist: '',
-                album: '',
-                format: '',
-                cat:''
-            }
+            collection: [],
+            modalEdit: false
         }
     }
 
-    deleteCollection = () => {
-        fetch(`http://localhost:3000/collection/delete/${this.state.id}`, {
+    deleteCollection = async(collection: any) => {
+        const confirm = prompt('Are you sure you want to delete this record?', 'Yes')
+        if (confirm) {
+            try {
+                const res = await fetch(`http://localhost:3000/collection/delete/${collection.id}`, {
         // fetch(`${APIURL}/notes/delete/${note.id}`, {
             method: 'DELETE',
             headers: new Headers({
@@ -44,28 +56,34 @@ class CollectionTable extends Component <CollectionTableProps,CollectionTableSta
                 'Authorization': `Bearer ${this.props.token}`
             })
         })
-            .then(() => this.props.fetchCollection)
+        console.log(res)
+        this.props.fetchCollection()
+            } catch(e){console.log(e)}
+            
+        }
+        
     }
 
 
-    noteMapper = () => {
-        return this.props.collection.map((collection: {artist: '', album: '', format: '', cat: ''}, index: any) => {
+    collectionMapper = (): JSX.Element[] => {
+        return this.props.collection.map((collection: {artist: Collection, album: Collection, format: Collection, cat: Collection}, index: number) => {
             console.log(this.props.collection)
             return (
-                <div>
+                <tbody>
                     <tr key={index}>
-                    <th scope="row">{this.state.collection.artist}</th>
-                    <td>{this.state.collection.album}</td>
-                    <td>{this.state.collection.format}</td>
-                    <td>{this.state.collection.cat}</td>
+                    <td>{collection.artist}</td>
+                    <td>{collection.album}</td>
+                    <td>{collection.format}</td>
+                    <td>{collection.cat}</td>
                     <td>
-                        <Button onClick={() => { this.props.editUpdateCollection(collection); this.props.updateOn() }}>edit</Button>
-                        <br />
-                        <Button onClick={() => { if (window.confirm('Are you sure you want to delete this note?')) this.deleteCollection() }}>delete</Button>
+                        <div>
+                        <Button className="tableBtn" onClick={() => { this.props.editUpdateCollection(collection); this.props.updateOn() }}>edit</Button>
+                        <Button className="tableBtn" onClick={() => { this.deleteCollection(collection) }}>delete</Button>
+                        </div>
                         
                     </td>
                 </tr>
-                </div>
+                </tbody>
             )
         }
         )
@@ -76,7 +94,7 @@ class CollectionTable extends Component <CollectionTableProps,CollectionTableSta
         
             <div>
                 <>
-            <div className="notesTableDiv">
+            <div className="tableDiv overflow-x:auto">
                 <br />
                 <Table borderless>
                     <thead>
@@ -88,9 +106,9 @@ class CollectionTable extends Component <CollectionTableProps,CollectionTableSta
                             
                         </tr>
                     </thead>
-                    <tbody>
-                        {this.noteMapper()}
-                    </tbody>
+                    
+                        {this.collectionMapper()}
+                    
                 </Table>
             </div>
         </>

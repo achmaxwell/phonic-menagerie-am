@@ -1,18 +1,19 @@
 import React, { Component } from "react";
 import './Styles.css';
 import logo from "./assets/pm-logo.png"
+import Signup from './Signup';
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { Button } from '@mui/material';
-import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import { Col, Form, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 import NavAuth from '../Common/NavAuth'
 
 interface LoginProps {
     updateToken(token: string): void
     clickLogout: () => void
-    updateToken(token: string): void
+    updateAdmin(admin: string): void
 }
 interface LoginState {
     email : string,
@@ -79,7 +80,9 @@ class Login extends Component <LoginProps, LoginState> {
 
         const json = await res.json();
             const token = json.sessionToken
+            const admin = "" + json.user.isAdmin
             this.props.updateToken(token);
+            this.props.updateAdmin(admin);
 
     } catch (e) {
         console.log(e)
@@ -124,7 +127,15 @@ class Login extends Component <LoginProps, LoginState> {
             />
             <br/>
             <div>
-            <Button>Register</Button>
+            <Button onClick={this.toggle}>Register</Button>
+                <Modal isOpen={this.state.modal} toggle={this.toggle}>
+                    <ModalHeader className="modalHeader">
+                        <Button onClick={this.toggle} className="modalCloseBtn">X</Button>
+                        </ModalHeader>
+                    <ModalBody>
+                        <Signup updateToken={this.props.updateToken} updateAdmin={this.props.updateAdmin}/>
+                    </ModalBody>
+                </Modal>
             <Button type="submit" className="logBtn">Login</Button>
             </div>
             </Form>

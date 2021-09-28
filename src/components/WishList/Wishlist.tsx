@@ -1,13 +1,13 @@
 import { Component } from "react";
 import { Row, Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
-
 import WishlistEdit from './WishlistEdit';
 import WishlistTable from './WishlistTable';
 import WishlistAdd from './WishlistAdd';
+import './Styles.css';
 
 interface wishlistProps {
     token: string
-    clickLogout(): void
+    clickLogout: () => void
   } 
 
 interface wishlistState {
@@ -18,8 +18,10 @@ interface wishlistState {
         album: string,
         format: string,
         cat: string,
-        price: string
+        price: string,
+        id: number
 },
+    modal: boolean,
   } 
 
 class Wishlist extends Component <wishlistProps, wishlistState> {
@@ -33,14 +35,19 @@ class Wishlist extends Component <wishlistProps, wishlistState> {
                 album: '',
                 format: '',
                 cat: '',
-                price: ''
+                price: '',
+                id: 0
         },
+        modal: false,
     }
 }
 
+    toggle = () => this.setState({modal: !this.state.modal});
+
+
     fetchWishlist = () => {
         fetch('http://localhost:3000/wishlist/myWishItems', {
-            // fetch(`${APIURL}/wishList/myItems`, {
+            // fetch(`${APIURL}/wishlist/myItems`, {
             method: 'GET',
             headers: new Headers({
                 'Content-type': 'application/json',
@@ -54,7 +61,7 @@ class Wishlist extends Component <wishlistProps, wishlistState> {
     }
 
     editUpdateWishlist = (wishlist: any) => {
-        this.setState({wishlistToUpdate:(wishlist)});
+        this.setState({wishlistToUpdate: {artist: wishlist.artist, album: wishlist.album, format: wishlist.format, cat: wishlist.cat, price: wishlist.price, id: wishlist.id}});
         console.log("itemToUpdate " + this.state.wishlist);
     }
 
@@ -72,29 +79,27 @@ class Wishlist extends Component <wishlistProps, wishlistState> {
 
     render() {
     return (
-        <div>
-            <div className="bgDiv">
-                <div className="notesViewDiv">
-                    <div className="noteDivBtn">
+        <div >
+            <div className="wishlistDiv">
+                <div>
+                    <div>
                         <Row>
                             <h3>welcome!</h3>
-                            <p>keep track of all your gardening and plant progress by adding a note! If you find additional information edit your note, and if you no longer need the information (way to go gardening master!) simply delete it.</p>
-                            <Button id="logoutBtn" size="sm" onClick={this.props.clickLogout} className="logoutBtn">logout</Button>
-                            {/* <Button onClick={this.state.toggle} className="addNoteBtn">add note</Button> */}
-                            {/* <Modal isOpen={modal} toggle={toggle} className={className}>
+                            <p>Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
+                            <Button className="addBtn" onClick={this.toggle}>add record</Button>
+                            <Modal isOpen={this.state.modal} toggle={this.toggle}>
                                 <ModalHeader className="modalHeader">
-                                    <Button onClick={toggle} className="modalCloseBtn">X</Button>
+                                    <Button onClick={this.toggle} className="modalCloseBtn">X</Button>
                                 </ModalHeader>
                                 <ModalBody>
-                                    <CollectionAdd fetchCollection={this.fetchCollection} token={this.props.token} toggle={toggle} />
+                                    <WishlistAdd fetchWishlist={this.fetchWishlist} token={this.props.token} toggle={this.toggle}/>
                                 </ModalBody>
-                            </Modal> */}
+                            </Modal>
                         </Row>
                     </div>
-                    <WishlistTable wishlist={this.state.wishlist} editUpdateWishlist={this.editUpdateWishlist}  updateOn={this.updateOn} fetchWishlist={this.fetchWishlist} token={this.props.token} />
-
                     {this.state.updateActive ?
-                        <WishlistEdit wishlistUpdate={this.state.wishlistToUpdate} updateOff={this.updateOff} token={this.props.token} fetchWishlist={this.fetchWishlist} /> : <> </>}
+                            <WishlistEdit wishlistToUpdate={this.state.wishlistToUpdate} updateOff={this.updateOff} token={this.props.token} fetchWishlist={this.fetchWishlist} /> : <> </>}
+                    <WishlistTable wishlist={this.state.wishlist} wishlistToUpdate={this.state.wishlistToUpdate} editUpdateWishlist={this.editUpdateWishlist}  updateOff={this.updateOff} updateOn={this.updateOn} fetchWishlist={this.fetchWishlist} token={this.props.token} />
 
 </div>
 </div>

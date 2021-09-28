@@ -6,6 +6,7 @@ import Box from '@mui/material/Box';
 
 interface SignupProps {
     updateToken(token: string): void
+    updateAdmin(admin: string): void
 }
 
 interface SignupState {
@@ -37,7 +38,8 @@ class Signup extends Component <SignupProps, SignupState> {
 
     handleChange = async () => this.setState({ isAdmin: true })
 
-    handleSubmit = async () => {
+    handleSubmit = async (event: any) => {
+        event.preventDefault();
         const apiURL = `http://localhost:3000/user/create`
         console.log(apiURL)
         const reqBody = {
@@ -58,7 +60,9 @@ class Signup extends Component <SignupProps, SignupState> {
         })
             const json = await res.json();
             const token = json.sessionToken
+            const admin = "" + json.user.isAdmin
             this.props.updateToken(token);
+            this.props.updateAdmin(admin)
     } catch (e) {
         console.log(e)
     }
@@ -68,14 +72,14 @@ class Signup extends Component <SignupProps, SignupState> {
     return (
         <div>
 
-        <Form onSubmit={(e) => {
-            e.preventDefault()
-            this.handleSubmit()}}>
+        <Form onSubmit={this.handleSubmit}>
             <TextField
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: e.target.value})}}
                 id="standard-password-input"
                 label="Email"
                 type="email"
+                autoComplete="current-email"
+                variant="standard"
                 required
             />
             <br/>
@@ -84,6 +88,8 @@ class Signup extends Component <SignupProps, SignupState> {
                 id="standard-password-input"
                 label="Password"
                 type="password"
+                autoComplete="current-email"
+                variant="standard"
                 required
             />
             <br/>
