@@ -20,7 +20,6 @@ interface WishlistTableProps {
     }
 }
 
-
 interface WishlistTableState {
     id: number,
     wishlist: Wishlist[],
@@ -66,23 +65,22 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
         
     }
 
-
     wishlistMapper = (): JSX.Element[] => {
         return this.props.wishlist.map((wishlist: {artist: Wishlist, album: Wishlist, format: Wishlist, cat: Wishlist, price: Wishlist}, index: number) => {
             console.log(this.props.wishlist)
             return (
                 <tbody>
                     <tr key={index}>
-                    <td>{wishlist.artist}</td>
-                    <td>{wishlist.album}</td>
-                    <td>{wishlist.format}</td>
-                    <td>{wishlist.cat}</td>
-                    <td>{wishlist.price}</td>
+                        <td>{wishlist.artist}</td>
+                        <td>{wishlist.album}</td>
+                        <td>{wishlist.format}</td>
+                        <td>{wishlist.cat}</td>
+                        <td>{wishlist.price}</td>
                     <td>
-                        <div>
+                    <div>
                         <Button className="tableBtn" onClick={() => { this.props.editUpdateWishlist(wishlist); this.props.updateOn() }}>edit</Button>
                         <Button className="tableBtn" onClick={() => { this.deleteWishlist(wishlist) }}>delete</Button>
-                        </div>
+                    </div>
                         
                     </td>
                 </tr>
@@ -93,32 +91,31 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
 
     }
     render() {
-    return (
-        
-            <div>
-                <>
-            <div className="tableDiv overflow-x:auto">
-                <br />
-                <Table borderless>
-                    <thead>
-                        <tr>
-                            <th>Artist</th>
-                            <th>Album</th>
-                            <th>Format</th>
-                            <th>Cat#</th>
-                            <th>Price</th>
-                            
-                        </tr>
-                    </thead>
-                    
-                        {this.wishlistMapper()}
-                    
-                </Table>
-            </div>
-        </>
-            </div>
-        
-    )
+        return (
+                <div>
+                    <>
+                <div className="tableDiv overflow-x:auto">
+                    <br />
+                    <Table borderless>
+                        <thead>
+                            <tr>
+                                <th>Artist</th>
+                                <th>Album</th>
+                                <th>Format</th>
+                                <th>Cat#</th>
+                                <th>Price</th>
+                                
+                            </tr>
+                        </thead>
+                        
+                            {this.wishlistMapper()}
+                        
+                    </Table>
+                </div>
+            </>
+                </div>
+            
+        )
     }
 }
 

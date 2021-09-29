@@ -71,10 +71,10 @@ class CollectionTable extends Component <CollectionTableProps,CollectionTableSta
             return (
                 <tbody>
                     <tr key={index}>
-                    <td>{collection.artist}</td>
-                    <td>{collection.album}</td>
-                    <td>{collection.format}</td>
-                    <td>{collection.cat}</td>
+                    <td className="artistBodyFont">{collection.artist}</td>
+                    <td className="tableBodyFont">{collection.album}</td>
+                    <td className="tableBodyFont">{collection.format}</td>
+                    <td className="tableBodyFont">{collection.cat}</td>
                     <td>
                         <div>
                         <Button className="tableBtn" onClick={() => { this.props.editUpdateCollection(collection); this.props.updateOn() }}>edit</Button>
@@ -99,10 +99,10 @@ class CollectionTable extends Component <CollectionTableProps,CollectionTableSta
                 <Table borderless>
                     <thead>
                         <tr>
-                            <th>Artist</th>
-                            <th>Album</th>
-                            <th>Format</th>
-                            <th>Cat#</th>
+                            <th className="tableDisplayFont">Artist</th>
+                            <th className="tableDisplayFont">Album</th>
+                            <th className="tableDisplayFont">Format</th>
+                            <th className="tableDisplayFont">Cat#</th>
                             
                         </tr>
                     </thead>

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { FormControl, FormLabel, RadioGroup, FormControlLabel, Radio, Button } from '@mui/material';
-import { Col, Form, FormGroup, Label, Input, FormText } from 'reactstrap';
+import './Styles.css';
+import {FormLabel } from '@mui/material';
+import { Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
 
 interface SignupProps {
     updateToken(token: string): void
@@ -34,7 +34,6 @@ class Signup extends Component <SignupProps, SignupState> {
             isAdmin: false
         }  ; console.log(props)
     } 
-   
 
     handleChange = async () => this.setState({ isAdmin: true })
 
@@ -71,45 +70,38 @@ class Signup extends Component <SignupProps, SignupState> {
     render() {
     return (
         <div>
-
-        <Form onSubmit={this.handleSubmit}>
-            <TextField
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: e.target.value})}}
-                id="standard-password-input"
-                label="Email"
-                type="email"
-                autoComplete="current-email"
-                variant="standard"
-                required
-            />
-            <br/>
-            <TextField
-                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({password: e.target.value})}}
-                id="standard-password-input"
-                label="Password"
-                type="password"
-                autoComplete="current-email"
-                variant="standard"
-                required
-            />
-            <br/>
-            <FormLabel component="legend">Are you an Administrator?</FormLabel>
-            <FormGroup check>
-            <Label check>
-                <Input type="checkbox" id="checkbox2" checked={this.state.isAdmin} onChange={this.handleChange}/>{' '}
-                Are you an admin?
-            </Label>
-            </FormGroup>
-            <div>
-            <Button 
-            type="submit"
-            sx={{
-                color: 'white',
-                background: '#a1936d',
-            }}>Register</Button>
-            </div>
+            <Form onSubmit={this.handleSubmit}>
+                <TextField
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: e.target.value})}}
+                    id="standard-password-input"
+                    label="Email"
+                    type="email"
+                    autoComplete="current-email"
+                    variant="standard"
+                    required
+                />
+                <br/>
+                <TextField
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({password: e.target.value})}}
+                    id="standard-password-input"
+                    label="Password"
+                    type="password"
+                    autoComplete="current-email"
+                    variant="standard"
+                    required
+                />
+                <br/><br/>
+                <FormLabel component="legend">Are you an Administrator?</FormLabel>
+                <FormGroup check>
+                <Label check>
+                    <Input type="checkbox" id="checkbox2" checked={this.state.isAdmin} onChange={this.handleChange}/>{' '}
+                    yes
+                </Label>
+                </FormGroup>
+                <div>
+                    <Button className="logBtn">Register</Button>
+                </div>
             </Form>
-
         </div>
     );
 };

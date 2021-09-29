@@ -5,8 +5,7 @@ import Signup from './Signup';
 
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import { Button } from '@mui/material';
-import { Col, Form, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Form, Modal, ModalBody, ModalHeader, Button } from 'reactstrap';
 
 import NavAuth from '../Common/NavAuth'
 
@@ -49,10 +48,7 @@ class Login extends Component <LoginProps, LoginState> {
         }
     }
 
-
     toggle = () => this.setState({modal: !this.state.modal});
-
-    // handleChange = async (e: any) => this.setState({ isAdmin: e.target.checked })
 
     handleSubmit = async (event : any) => {
         event.preventDefault();
@@ -72,11 +68,6 @@ class Login extends Component <LoginProps, LoginState> {
                 'Content-Type': 'application/json'
             })
         })
-        // .then(
-        //     (response) => res.json()
-        // ).then((data) => {
-        //     this.props.updateToken(data.token)
-        // })
 
         const json = await res.json();
             const token = json.sessionToken
@@ -94,18 +85,19 @@ class Login extends Component <LoginProps, LoginState> {
         <div className="bgDiv">
             <NavAuth updateToken={this.props.updateToken} clickLogout={this.props.clickLogout} />
             <Box
+            className="loginDiv"
             sx={{
                 margin: "auto",
                 marginTop: "3em",
                 padding: "2em",
                 width: 500,
                 height: "auto",
-                bgcolor: 'whitesmoke',
+                // bgcolor: 'whitesmoke',
             }}>
-                <b>Welcome to</b>
+                <h6 className="displayFont">Welcome to</h6>
                 <img src={logo} alt="Phonic Menagerie" className="logoImgLogin"/>
-                <p>Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
-            <Form onSubmit={this.handleSubmit}>
+                <p className="bodyFont">Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
+            <Form className="formDiv" onSubmit={this.handleSubmit}>
             <TextField
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: (e.target.value)})}}
                 id="standard-password-input"
@@ -127,12 +119,13 @@ class Login extends Component <LoginProps, LoginState> {
             />
             <br/>
             <div>
-            <Button onClick={this.toggle}>Register</Button>
+            <Button className="logBtn" onClick={this.toggle}>Register</Button>
                 <Modal isOpen={this.state.modal} toggle={this.toggle}>
-                    <ModalHeader className="modalHeader">
+                    <ModalHeader className="modalHeader signUpHeader">
                         <Button onClick={this.toggle} className="modalCloseBtn">X</Button>
                         </ModalHeader>
-                    <ModalBody>
+                    <ModalBody className="signUpBody">
+                    <h3 className="modalFont">Let's get you registered!</h3>
                         <Signup updateToken={this.props.updateToken} updateAdmin={this.props.updateAdmin}/>
                     </ModalBody>
                 </Modal>

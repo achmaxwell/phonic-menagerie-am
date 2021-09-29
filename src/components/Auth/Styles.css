@@ -1,12 +1,7 @@
-.bgDiv {
-    position: fixed;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-size: cover;
-    background-image: url('./assets/umberto-cofini-lEOogB2xh1M-unsplash.jpg');
-    overflow: scroll;
-  }
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+/* LOGO */
 
   .logoImgLogin {
     display: block;
@@ -16,8 +11,88 @@
     margin-bottom: 1em;
   }
 
+  /* BACKGROUND */
+
+  .signUpHeader {
+    background-color: #d1c7ae;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+  }
+
+  .signUpBody {
+    background-color: white;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+    padding: 1em;
+  }
+
+  /* BUTTON */
+
   .logBtn {
-      background-color: #000;
+      background-color: darkslategray;
       color: white;
+      margin-top: 1.5em;
+      margin-right: .5em;
+      border: none;
+      font-family: 'Abril Fatface', cursive;
+  }
+
+  .logBtn:hover {
+    background-color: #E1AD01;
+  }
+
+  .modalCloseBtn {
+    border-radius: 50px !important;
+    border: none !important;
+    background-color: darkslategray!important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: white  !important;
+    float: right !important;
+    margin-left: 430px;
+    margin-top: 0px;
+    padding: 5px 15px 5px 15px !important;
+  }
+
+  .modalCloseBtn:hover {
+    background-color: #E1AD01!important;
+  }
+
+  /* FONT */
+
+  .displayFont {
+    font-family: 'Abril Fatface', cursive;
+  }
+
+  .bodyFont {
+    font-family: 'Open Sans', sans-serif;
+  }
+
+  .modalFont {
+    font-family: 'Abril Fatface', cursive!important;
+    float: left;
+    margin-top: 1em;
+  }
+
+  /* DIV */
+
+  .formDiv {
+    background-color: white;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+    padding: 1em;
+  }
+
+  .loginDiv {
+    background-color: #d1c7ae;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+    border-radius: 20px 20px 0px 0px;
+  }
+
+  .bgDiv {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('./assets/umberto-cofini-lEOogB2xh1M-unsplash.jpg');
+    overflow: scroll;
   }
 

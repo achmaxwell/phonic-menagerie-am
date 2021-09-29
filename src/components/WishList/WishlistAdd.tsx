@@ -31,65 +31,66 @@ class WishlistAdd extends Component <AddWishlistProps,AddWishlistState> {
         e.preventDefault();
         fetch('http://localhost:3000/wishlist/add/', {
             method: 'POST',
-            body: JSON.stringify({ collection: {artist: this.state.artist, album: this.state.album, format: this.state.format, cat: this.state.cat, price: this.state.price} }),
+            body: JSON.stringify({ wishlist: {artist: this.state.artist, album: this.state.album, format: this.state.format, cat: this.state.cat, price: this.state.price} }),
             headers: new Headers({
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${this.props.token}`
             })
         }).then((res) => res.json())
-            .then((res) => {
-                fetch(`/photo/update/${res.id}`, {
-                    method: 'PUT',
-                    body: JSON.stringify(
-                        {
-                            wishlist:
-                                { album: res.album,
-                                artist: res.artist,
-                                format: res.format,
-                                cat: res.cat,
-                                price: res.price
-                        }
-                        }),
-                    headers: new Headers({
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.props.token}`
-                    })
+        .then((res) => {
+            fetch(`/photo/update/${res.id}`, {
+                method: 'PUT',
+                body: JSON.stringify(
+                    {
+                        collection:
+                            { album: res.album,
+                            artist: res.artist,
+                            format: res.format,
+                            cat: res.cat,
+                            price: res.price
+                    }
+                    }),
+                headers: new Headers({
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${this.props.token}`
                 })
-                    .then(() => {
-                        this.props.fetchWishlist([]);
-                    })
             })
-            .then((wishlistData) => {
-                console.log(wishlistData);
-                this.setState({artist:('')});
-                this.setState({album:('')});
-                this.setState({format:('')});
-                this.setState({cat:('')});
-                this.props.fetchWishlist([]);
-            })
-    }
+                .then(() => {
+                    this.props.fetchWishlist([]);
+                })
+        })
+        .then((collectionData) => {
+            console.log(collectionData);
+            this.setState({artist:('')});
+            this.setState({album:('')});
+            this.setState({format:('')});
+            this.setState({cat:('')});
+            this.setState({price:('')});
+            this.props.fetchWishlist([]);
+        })
+}
     render() {
     return (
         <>
-            <h4 className="signupHeader">add a record</h4>
+            <h4 className="modalFont">Add to your Wishlist!</h4>
             <Form className="form" onSubmit={this.handleSubmit}>
                 <FormGroup>
-                    <Input name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist" />
+                    <Input className="recordInput" name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album" />
+                    <Input className="recordInput" name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format" />
+                    <Input className="recordInput" name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat" />
+                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="price" value={this.state.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({price: (e.target.value)})}} placeholder="price" />
+                    <Input className="recordInput" name="price" value={this.state.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({price: (e.target.value)})}} placeholder="price" />
                 </FormGroup>
                 <br />
-                <Button onClick={this.props.toggle} className="modalSignupBtn" type="submit">save</Button>
+                <Button onClick={this.props.toggle} className="tableBtn" type="submit">save</Button>
             </Form>
         </>
     )

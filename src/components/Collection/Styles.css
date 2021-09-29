@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
 /* DIV STYLE */
 
 .bgDiv {
@@ -13,13 +17,16 @@
 .collectionDiv {
     margin: auto;
     margin-top: 10em;
-    background-color: white;
+    background-color: #d1c7ae!important;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+    border-radius: 20px 20px 0px 0px;
     width: 80%;
     padding: 3em;
 }
 
 .tableDiv {
-    background-color: lightgray;
+    background-color: white!important;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
     margin: auto;
     width: 100%;
     padding: 1em;
@@ -29,19 +36,114 @@
 
 .addBtn {
     background-color: darkslategrey;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    font-size: 15pt;
     margin: auto;
     margin-bottom: 1em;
     width: 8em;
     border: none;
 }
+.addBtn:hover {
+    background-color: #E1AD01;
+  }
 
-.tableBtn {
+.updateBtn {
     background-color: darkslategrey;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
     margin-bottom: .3em;
     width: 5em;
     border: none;
     display: block;
-    
+}
+
+.updateBtn:hover {
+    background-color: #E1AD01;
+}
+
+.tableBtn {
+    background-color: darkslategrey;
+    color: white;
+    font-family: 'Abril Fatface', cursive;
+    margin-bottom: .3em;
+    width: 5em;
+    border: none;
+    display: block;
+}
+.tableBtn:hover {
+    background-color: #E1AD01;
 }
 
 /* TEXT STYLE */
+
+.displayFont {
+    font-family: 'Abril Fatface', cursive;
+}
+
+.bodyFont {
+    font-family: 'Open Sans', sans-serif;
+}
+
+.tableDisplayFont {
+    font-family: 'Abril Fatface', cursive;
+    font-size: 12pt;
+}
+
+.tableBodyFont {
+    font-family: 'Special Elite', cursive;
+    font-size: 15pt;
+}
+
+.artistBodyFont {
+    font-family: 'Special Elite', cursive;
+    font-size: 20pt;
+}
+
+/* INPUTS */
+
+.recordInput {
+    font-family: 'Special Elite', cursive;
+    font-size: 15pt;
+    background-color: white!important;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+    margin: auto;
+    margin-bottom: .5em;
+    border: none;
+}
+
+/* MODAL */
+
+.modalCloseBtn {
+    border-radius: 50px !important;
+    border: none !important;
+    background-color: darkslategray!important;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 800;
+    color: white  !important;
+    float: right !important;
+    margin-left: 430px;
+    margin-top: 0px;
+    padding: 5px 15px 5px 15px !important;
+}
+
+.modalCloseBtn:hover {
+    background-color: #E1AD01!important;
+}
+
+.modalFont {
+    font-family: 'Abril Fatface', cursive!important;
+    float: left;
+    margin-bottom: 1em;
+}
+
+.addHeader {
+    background-color: #999284;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+}
+
+.addBody {
+    background-color: #d1c7ae;
+    background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+    padding: 1em;
+}

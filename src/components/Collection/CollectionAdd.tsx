@@ -68,22 +68,22 @@ class CollectionAdd extends Component <AddCollectionProps,AddCollectionState> {
     render() {
     return (
         <>
-            <h4 className="signupHeader">add a record</h4>
+            <h3 className="modalFont">add a record</h3>
             <Form className="form" onSubmit={this.handleSubmit}>
                 <FormGroup>
-                    <Input name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist" />
+                    <Input className="recordInput" name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album" />
+                    <Input className="recordInput" name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format" />
+                    <Input className="recordInput" name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format" />
                 </FormGroup>
                 <FormGroup>
-                    <Input name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat#" />
+                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat#" />
                 </FormGroup>
                 <br />
-                <Button onClick={this.props.toggle} className="modalSignupBtn" type="submit">save</Button>
+                <Button className="tableBtn" onClick={this.props.toggle} type="submit">save</Button>
             </Form>
         </>
     )
