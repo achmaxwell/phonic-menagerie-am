@@ -35,9 +35,9 @@ class AdminTable extends Component <AdminTableProps,AdminTableState> {
             return (
                 <tbody>
                     <tr key={index}>
-                    <td>{user.email}</td>
-                    <td>{user.createdAt}</td>
-                    <td>{user.updatedAt}</td>
+                    <td className="tableBodyFont">{user.email}</td>
+                    <td className="tableBodyFont">{user.createdAt}</td>
+                    <td className="tableBodyFont">{user.updatedAt}</td>
                     <td>
                         <div>
                         </div>
@@ -60,9 +60,9 @@ class AdminTable extends Component <AdminTableProps,AdminTableState> {
                 <Table borderless>
                     <thead>
                         <tr>
-                            <th>Email</th>
-                            <th>Created</th>
-                            <th>Updated</th>
+                            <th className="tableDisplayFont">Email</th>
+                            <th className="tableDisplayFont">Created</th>
+                            <th className="tableDisplayFont">Updated</th>
                         </tr>
                     </thead>
                     

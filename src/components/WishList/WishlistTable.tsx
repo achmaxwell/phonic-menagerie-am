@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Table, Button, Row, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import WishlistEdit from './WishlistEdit'
+import { Table, Button } from 'reactstrap';
 import './Styles.css';
 
 interface WishlistTableProps {
@@ -71,11 +70,11 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
             return (
                 <tbody>
                     <tr key={index}>
-                        <td>{wishlist.artist}</td>
-                        <td>{wishlist.album}</td>
-                        <td>{wishlist.format}</td>
-                        <td>{wishlist.cat}</td>
-                        <td>{wishlist.price}</td>
+                        <td className="artistBodyFont">{wishlist.artist}</td>
+                        <td className="tableBodyFont">{wishlist.album}</td>
+                        <td className="tableBodyFont">{wishlist.format}</td>
+                        <td className="tableBodyFont">{wishlist.cat}</td>
+                        <td className="tableBodyFont">{wishlist.price}</td>
                     <td>
                     <div>
                         <Button className="tableBtn" onClick={() => { this.props.editUpdateWishlist(wishlist); this.props.updateOn() }}>edit</Button>
@@ -99,11 +98,11 @@ class WishlistTable extends Component <WishlistTableProps,WishlistTableState> {
                     <Table borderless>
                         <thead>
                             <tr>
-                                <th>Artist</th>
-                                <th>Album</th>
-                                <th>Format</th>
-                                <th>Cat#</th>
-                                <th>Price</th>
+                                <th className="tableDisplayFont">Artist</th>
+                                <th className="tableDisplayFont">Album</th>
+                                <th className="tableDisplayFont">Format</th>
+                                <th className="tableDisplayFont">Cat#</th>
+                                <th className="tableDisplayFont">Price</th>
                                 
                             </tr>
                         </thead>

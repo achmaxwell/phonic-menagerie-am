@@ -94,9 +94,9 @@ class Login extends Component <LoginProps, LoginState> {
                 height: "auto",
                 // bgcolor: 'whitesmoke',
             }}>
-                <h6 className="displayFont">Welcome to</h6>
+                <h6 className="authDisplayFont">Welcome to</h6>
                 <img src={logo} alt="Phonic Menagerie" className="logoImgLogin"/>
-                <p className="bodyFont">Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
+                <p className="authBodyFont">Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
             <Form className="formDiv" onSubmit={this.handleSubmit}>
             <TextField
                 onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({email: (e.target.value)})}}

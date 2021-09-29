@@ -16,8 +16,8 @@
 
 .collectionDiv {
     margin: auto;
-    margin-top: 10em;
-    background-color: #d1c7ae!important;
+    margin-top: 4em;
+    background-color: #E1AD01!important;
     background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
     border-radius: 20px 20px 0px 0px;
     width: 80%;
@@ -45,7 +45,7 @@
     border: none;
 }
 .addBtn:hover {
-    background-color: #E1AD01;
+    background-color: rgb(6, 54, 47)!important;
   }
 
 .updateBtn {
@@ -79,9 +79,10 @@
 
 .displayFont {
     font-family: 'Abril Fatface', cursive;
+    color: white;
 }
 
-.bodyFont {
+.collectionBodyFont {
     font-family: 'Open Sans', sans-serif;
 }
 

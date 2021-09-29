@@ -84,7 +84,7 @@ class WishlistAdd extends Component <AddWishlistProps,AddWishlistState> {
                     <Input className="recordInput" name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format" />
                 </FormGroup>
                 <FormGroup>
-                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat" />
+                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat#" />
                 </FormGroup>
                 <FormGroup>
                     <Input className="recordInput" name="price" value={this.state.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({price: (e.target.value)})}} placeholder="price" />

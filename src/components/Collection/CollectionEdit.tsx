@@ -65,7 +65,7 @@ class CollectionEdit extends Component <collectionEditProps,collectionEditState>
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat">
+                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat#">
                     {this.props.collectionToUpdate.cat}
                     </Input>
                 </FormGroup>

@@ -11,6 +11,15 @@
   overflow: scroll;
 }
 
+.homeDiv {
+  margin: auto;
+  margin-top: 4em;
+  background-color: #E1AD01!important;
+  background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
+  width: 100%;
+  padding: 3em;
+}
+
 .logoImgNav {
     display: block;
     padding-left: .5em;
@@ -38,7 +47,7 @@
 .logoutBtn {
   background-color: darkslategrey;
   font-family: 'Abril Fatface', cursive;
-  letter-spacing: .05em;
+  letter-spacing: .1em;
   margin-right: 1em;
   margin-left: 1em;
   margin-top: .5em;
@@ -49,4 +58,39 @@
 
 .logoutBtn:hover {
   background-color: #E1AD01;
+}
+
+/* IMAGE */
+
+.homeImg {
+  width: 100%;
+  margin: auto;
+}
+
+/* FONT */
+
+.homeDisplayFont {
+  font-family: 'Abril Fatface', cursive!important;
+  color: white;
+  font-size: 50pt!important;
+}
+
+.homeSubFont {
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  font-size: 20pt!important;
+  font-weight: 400;
+}
+
+.bodyFont {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 18pt;
+  font-weight: 400;
+}
+
+.partyOn {
+  font-family: 'Abril Fatface', cursive!important;
+  color: darkslategray;
+  font-size: 20pt;
+  margin-top: 1em;
 }

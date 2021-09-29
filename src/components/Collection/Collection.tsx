@@ -82,14 +82,14 @@ class Collection extends Component <collectionProps, collectionState> {
                 <div>
                     <div>
                         <Row>
-                            <h1 className="displayFont">welcome!</h1>
-                            <p className="bodyFont">Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
+                            <h1 className="displayFont">Your Collection</h1>
+                            <p className="collectionBodyFont">Keep track of your personal collection! Add your latest find, edit if you recorded the information incorrectly, and delete those albums you've sold. You can now be confident in the fact that you can keep track fo your library of sound! Now you can show off what you got or make sure you don't double purchase.</p>
                             <Button className="addBtn" onClick={this.toggle}>add record</Button>
                             <Modal isOpen={this.state.modal} toggle={this.toggle}>
                                 <ModalHeader className="addHeader">
                                     <Button onClick={this.toggle} className="modalCloseBtn">X</Button>
                                 </ModalHeader>
-                                <ModalBody className="addBody">
+                                <ModalBody>
                                     <CollectionAdd fetchCollection={this.fetchCollection} token={this.props.token} toggle={this.toggle}/>
                                 </ModalBody>
                             </Modal>

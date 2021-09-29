@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Row} from 'reactstrap';
 import AdminTable from './AdminTable'
-import '../Collection/Styles.css';
+import './Styles.css';
 
 interface adminProps {
     token: string
@@ -43,12 +43,13 @@ class Admin extends Component <adminProps, adminState> {
     render() {
     return (
         <div >
-            <div className="collectionDiv">
+            <div className="adminDiv">
                 <div>
                     <div>
                         <Row>
-                            <h3>welcome!</h3>
-                            <p>Your personal album collection in the palm of your hand! Keep track of your record collection and add albums to your wishlist. Ensures you don't buy the same record twice!</p>
+                            <h1 className="adminDisplayFont">Administration</h1>
+                            <p className="bodyFont"> Here you'll find all the users that have created accounts. in the future you
+                        'll be able to delete users and edit their content.</p>
                         </Row>
                     </div>
                     <AdminTable user={this.state.user} fetchUsers={this.fetchUsers} token={this.props.token} />

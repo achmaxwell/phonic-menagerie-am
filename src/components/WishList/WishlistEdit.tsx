@@ -56,27 +56,27 @@ class WishlistEdit extends Component <wishlistEditProps,wishlistEditState> {
         <div>
             <Form onSubmit={this.wishlistUpdate}>
             <FormGroup>
-                    <Input name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist">
+                    <Input className="recordInput" name="artist" value={this.state.artist} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({artist: (e.target.value)})}} placeholder="artist">
                 </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Input name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album">
+                    <Input className="recordInput" name="album" value={this.state.album} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({album: (e.target.value)})}} placeholder="album">
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Input name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format">
+                    <Input className="recordInput" name="format" value={this.state.format} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({format: (e.target.value)})}} placeholder="format">
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Input name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat">
+                    <Input className="recordInput" name="cat" value={this.state.cat} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="cat">
                     </Input>
                 </FormGroup>
                 <FormGroup>
-                    <Input name="price" value={this.state.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="price">
+                    <Input className="recordInput" name="price" value={this.state.price} onChange={(e: React.ChangeEvent<HTMLInputElement>) => {this.setState({cat: (e.target.value)})}} placeholder="price">
                     </Input>
                 </FormGroup>
                 <br/>
-                <Button type="submit" className="editBtn">update</Button>
+                <Button type="submit" className="updateBtn">update</Button>
             </Form>
             <br/>
         </div>

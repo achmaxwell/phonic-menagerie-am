@@ -58,11 +58,12 @@
 
   /* FONT */
 
-  .displayFont {
+  .authDisplayFont {
     font-family: 'Abril Fatface', cursive;
+    color: black;
   }
 
-  .bodyFont {
+  .authBodyFont {
     font-family: 'Open Sans', sans-serif;
   }
 
@@ -81,7 +82,7 @@
   }
 
   .loginDiv {
-    background-color: #d1c7ae;
+    background-color: #E1AD01;
     background-image: url("https://www.transparenttextures.com/patterns/bedge-grunge.png");
     border-radius: 20px 20px 0px 0px;
   }
