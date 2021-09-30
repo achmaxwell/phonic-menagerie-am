@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import './Styles.css';
 import logo from "./assets/pm-logo.png"
 import Signup from './Signup';
-
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import { Form, Modal, ModalBody, ModalHeader, Button } from 'reactstrap';

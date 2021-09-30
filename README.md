@@ -1,47 +1,75 @@
-# Getting Started with Create React App
+# Phonic Menagerie - Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Phonic Menagerie is an application for the album collector. The user creates an account and adds, edits, or deletes an album to their own collection or albums they want to purchase in the future on a Wishlist (add, edit, or delete).
 
-## Available Scripts
+## Installation
 
-In the project directory, you can run:
+Clone git repo
 
-### `npm start`
+```bash
+git clone git@github.com/achmaxwell/phonic-menagerie-am.git
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Phonic Menagerie utilizes node, reactstrap, react-bootstrap, react-router-dom, typescript, and material UI
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm install reactstrap react-bootstrap react-router-dom typescript @mui/material
 
-### `npm test`
+# Dependencies
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+    "@emotion/react": "^11.4.1",
+    "@material-ui/core": "^4.12.3",
+    "@mui/material": "^5.0.0",
+    "@mui/styled-engine-sc": "^5.0.0",
+    "@testing-library/jest-dom": "^5.14.1",
+    "@testing-library/react": "^11.2.7",
+    "@testing-library/user-event": "^12.8.3",
+    "@types/bootstrap": "^5.1.6",
+    "@types/jest": "^26.0.24",
+    "@types/node": "^12.20.25",
+    "@types/react": "^17.0.21",
+    "@types/react-dom": "^17.0.9",
+    "@types/react-router-dom": "^5.3.0",
+    "bootstrap": "^5.1.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^1.6.4",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^5.3.0",
+    "react-scripts": "4.0.3",
+    "reactstrap": "^8.10.0",
+    "styled-components": "^5.3.1",
+    "typescript": "^4.4.3",
 
-### `npm run build`
+see package.json for all dependencies
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Usage
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+To start application
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```python
+# start server
+nodemon
 
-### `npm run eject`
+# start client
+npm start
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+Collection/ Wishlist:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- User can create account with email and password
+- User can navigate Collection, Wishlist, and if Administrator admin view of users signed up.
+- User can add album (artist, album, format, cat#)
+- User can edit album
+- User can delete album
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Admin
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- Admin can view all users who have signed up
 
-## Learn More
+## TBD Version 2.0
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-# phonic-menagerie
+- Third party API for New Releases/ Prices
+- Sorting Collection/Wishlist by Artist
+- Share with other Users
+- Admin have the ability to delete users and edit user content

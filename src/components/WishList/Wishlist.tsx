@@ -85,7 +85,7 @@ class Wishlist extends Component <wishlistProps, wishlistState> {
                     <div>
                         <Row>
                             <h1 className="wishlistDisplayFont">Your Wish List</h1>
-                            <p className="bodyFont">Got a record you want to buy? Add it here! You can even add a cost to start budgeting for the rare vinyl you've always wanted.</p>
+                            <p className="wishBodyFont">Got a record you want to buy? Add it here! You can even add a cost to start budgeting for the rare vinyl you've always wanted.</p>
                             <Button className="addBtn" onClick={this.toggle}>add record</Button>
                             <Modal isOpen={this.state.modal} toggle={this.toggle}>
                                 <ModalHeader className="modalHeader">

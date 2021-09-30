@@ -82,8 +82,8 @@
     color: white;
 }
 
-.bodyFont {
-    font-family: 'Open Sans', sans-serif;
+.wishBodyFont {
+    font-family: 'Open Sans', sans-serif!important;
 }
 
 .tableDisplayFont {
